@@ -1,0 +1,2 @@
+#!/bin/sh
+curl https://login.aut.ac.ir/login -d "username=yourusername&password=yourpassword"
