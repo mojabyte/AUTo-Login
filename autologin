@@ -1,2 +1,10 @@
 #!/bin/sh
+
+# quit if we're called for the loopback
+[ "$IFACE" != "lo" ] || exit 0
+
+# send login request
 curl https://login.aut.ac.ir/login -d "username=yourusername&password=yourpassword"
+
+exit 0
+

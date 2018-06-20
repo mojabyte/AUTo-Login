@@ -5,8 +5,8 @@ if [[ $EUID -ne 0 ]]; then
    	exit 1
 else
 	command -v curl >/dev/null 2>&1 || {
-		echo >&2 "Installing Curl..."
-		sudo apt-get install -y curl 2>&1 >/dev/null
+	    echo >&2 "Installing Curl..."
+	    sudo apt-get install -y curl 2>&1 >/dev/null
 	}
 
 	read -p 'Username: ' username
@@ -18,6 +18,9 @@ else
 	sudo sed -i "s/yourpassword/${password}/g" /etc/network/if-up.d/autologin
 
 	sudo chmod +x /etc/network/if-up.d/autologin
+
+	sudo echo >> /etc/network/interfaces
+	sudo echo "post-up /etc/network/if-up.d/autologin" >> /etc/network/interfaces
 
 	echo
 fi
